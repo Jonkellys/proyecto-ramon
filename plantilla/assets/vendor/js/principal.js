@@ -33,6 +33,7 @@ $(document).ready(function(){
             icon: "question",
             showCancelButton: true,
             confirmButtonText: "Aceptar",
+            confirmButtonColor: "#fc3c51",
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if(result.isConfirmed) {

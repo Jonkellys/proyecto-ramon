@@ -1,18 +1,18 @@
-**Asistencias Alcaldia de Benítez**
----
-
+## **Asistencias Alcaldia de Benítez**
 
 - **Revisar**
-	- [x] Personal
-	- [x] Asistencias
-	- [ ] Admins
-	- [ ] Usuarios
-	- [ ] Contraseñas
-	- [ ] Registros
+
+  - [x] Personal
+  - [x] Asistencias
+  - [ ] Admins
+  - [ ] Usuarios
+  - [ ] Contraseñas
+  - [ ] Registros
 
 - **Detalles**
-	- [ ] SweetAlert color
+
+  - [x] SweetAlert color
 
 - **Agregar**
-	- [ ] Calcular horas totales
-	- [ ] Horarios
+  - [ ] Calcular horas totales
+  - [ ] Horarios
