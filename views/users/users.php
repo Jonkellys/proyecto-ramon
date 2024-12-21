@@ -250,14 +250,16 @@
                                   <td>" . $rows['UserName'] . "</td>
                                   <td>" . $rows['UserEmail'] . "</td>";
                             if($_SESSION['tipo'] == "Administrador") {
-                              echo"<td class='mt-0'>
-                                  <a class='btn btn-sm btn-info' href='editarUser?codigo=" . $rows['CuentaCodigo'] . "'>
+                              echo"<td class='mt-0 h-100 d-flex flex-row justify-content-center'>
+                                  <a class='btn btn-sm btn-info me-2' href='editarUser?codigo=" . $rows['CuentaCodigo'] . "'>
                                   <span class='tf-icons bx bx-edit'></span>
                                 </a>
                                 
-                                <a class='btn btn-sm btn-danger' href= 'conexiones/eliminarUser.php?codigo=" . $rows['CuentaCodigo'] . "'>
-                                  <span class='tf-icons bx bx-trash'></span>
-                                </a>
+                                <form action='" . SERVERURL . "conexiones/eliminarUser.php?codigo=" . $rows['CuentaCodigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' class='DeleteForm'>
+                                    <div class='RespuestaAjax'></div>
+                                    <button class='btn btn-sm btn-danger'>
+                                      <span class='tf-icons bx bx-trash'></span>
+                                      </button>
                                   </td>";
                             }
                             echo"</tr>";
@@ -269,93 +271,6 @@
                 </div>
               </div>
 
-
-              <div class="col-lg-4 col-md-6">
-                  <div class="mt-3">
-                    <!-- Modal -->
-                    <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
-                      <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title" ><span class="tf-icons bx bx-user-plus"></span>    Añadir Administrador</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <h5>Datos Personales</h5>
-                            <div class="row">
-                              <div class="col mb-0">
-                                <label for="nombre-admin-add" class="form-label">Nombre</label>
-                                <input type="text" id="nombre-admin-add" class="form-control" placeholder="Ingresar Nombre" />
-                              </div>
-                              <div class="col mb-0">
-                                <label for="apellido-admin-add" class="form-label">Apellido</label>
-                                <input type="text" id="apellido-admin-add" class="form-control" placeholder="Ingresar Apellido" />
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-0">
-                                <label for="cedula-admin-add" class="form-label">Cédula</label>
-                                <input type="text" id="cedula-admin-add" class="form-control" placeholder="Ingresar Cédula" />
-                              </div>
-                              <div class="col mb-0">
-                                <label for="telefono-admin-add" class="form-label">Teléfono</label>
-                                <input type="text" id="telefono-admin-add" class="form-control" placeholder="Ingresar Teléfono" />
-                              </div>
-                            </div>
-                            <div class="col mb-3">
-                              <label for="direccion-admin-add" class="form-label">Dirección</label>
-                              <input type="text" id="direccion-admin-add" class="form-control" placeholder="Ingresar Dirección" />
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <h5>Datos de la Cuenta</h5>
-                            <div class="row">
-                              <div class="col mb-0">
-                                <label for="usuario-admin-add" class="form-label">Nombre de Usuario</label>
-                                <input type="text" id="usuario-admin-add" class="form-control" placeholder="Ingresar Nombre de Usuario" />
-                              </div>
-                              <div class="col mb-0">
-                                <label for="correo-admin-add" class="form-label">Correo</label>
-                                <input type="email" id="correo-admin-add" class="form-control" placeholder="Ingresar Correo" />
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-0">
-                                <label for="clave1-admin-add" class="form-label">Contraseña</label>
-                                <input type="text" id="clave1-admin-add" class="form-control" placeholder="Ingresar Contraseña" />
-                              </div>
-                              <div class="col mb-0">
-                                <label for="clave2-admin-add" class="form-label">Repetir Contraseña</label>
-                                <input type="email" id="clave2-admin-add" class="form-control" placeholder="Ingresar Contraseña Nuevamente" />
-                              </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                              <div class="row-md">
-                                <label for="genero" class="form-label">Género</label>
-                                <div class="form-check mt-3">
-                                  <input name="genero" class="form-check-input" type="radio" value="0" id="femenino">
-                                  <label class="form-check-label" for="femenino"> Femenino </label>
-                                </div>
-                                <div class="form-check">
-                                  <input name="genero" class="form-check-input" type="radio" value="1" id="masculino" checked="">
-                                  <label class="form-check-label" for="masculino"> Masculino </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
           </div>
         </div>
 
@@ -366,6 +281,7 @@
     <?php include "./modulos/scripts.php"; ?>
     <script src="<?php echo media; ?>assets/vendor/js/principal.js"></script>
     <script src="<?php echo media; ?>assets/datatables/config.js"></script>
+      <script src="<?php echo media; ?>js/eliminar.js"></script>
 
     <script>
       function letras(e) {

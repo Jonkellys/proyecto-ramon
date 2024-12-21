@@ -29,7 +29,7 @@ $(document).ready(function () {
     }, 2000)
   })
 
-  $('.AdminDelForm').submit(function (e) {
+  $('.DeleteForm').submit(function (e) {
     e.preventDefault()
 
     var form = $('form').get(0)

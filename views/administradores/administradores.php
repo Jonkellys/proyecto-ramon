@@ -243,7 +243,7 @@
                                       <span class='tf-icons bx bx-edit'></span>
                                     </a>
                                     
-                                    <form action='" . SERVERURL . "conexiones/eliminarAdmin.php?codigo=" . $rows['CuentaCodigo'] . "&sesion=" . $_SESSION['codigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' data-form='delete' class='AdminDelForm'>
+                                    <form action='" . SERVERURL . "conexiones/eliminarAdmin.php?codigo=" . $rows['CuentaCodigo'] . "&sesion=" . $_SESSION['codigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' class='DeleteForm'>
                                     <div class='RespuestaAjax'></div>
                                     <button class='btn btn-sm btn-danger'>
                                       <span class='tf-icons bx bx-trash'></span>

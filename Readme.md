@@ -5,13 +5,14 @@
   - [x] Personal
   - [x] Asistencias
   - [x] Admins
-  - [ ] Usuarios
+  - [x] Usuarios
   - [ ] Contraseñas
   - [ ] Registros
 
 - **Detalles**
 
   - [x] SweetAlert color
+  - [ ] Actualizar updates
 
 <!-- - **Agregar**
   - [ ] Calcular horas totales
