@@ -12,6 +12,7 @@
     $sql = $conn->prepare("UPDATE asistencias SET AsistenciaSalida = '$salida' WHERE AsistenciaCodigo = '$codigo'");
 
     if ($sql->execute()) {
+      echo "<script>new swal('¡Exito!', 'Salida registrada correctamente', 'success');</script>";    
       echo '<script> window.location.href = "http://localhost/sistema-asistencias/asistencias"; </script>';
     } else {
       echo '<div class="alert alert-danger alert-dismissible" role="alert">

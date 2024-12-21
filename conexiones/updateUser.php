@@ -19,9 +19,7 @@
     $updateUser = updateCuenta($nombre, $apellido, $usuario, $correo, $genero, $codigo);
 
     if($sql->execute()){
-        echo '<div class="alert alert-success alert-dismissible" role="alert">
-                Datos actualizados correctamente.
-            </div>';
+        echo "<script>new swal('¡Exito!', 'Datos actualizados correctamente', 'success');</script>";
         echo '<script> window.location.href = "http://localhost/sistema-asistencias/users"; </script>';
     } else{
         echo '<div class="alert alert-danger alert-dismissible" role="alert">

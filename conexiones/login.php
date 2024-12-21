@@ -13,10 +13,7 @@
 
 
                     if($usuarioLogin == "" || $passwordLogin == "") {
-                        echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                                Debes llenar todos los campos.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                        echo "<script>new swal('¡Error!', 'Debes llenar todos los campos', 'error');</script>";
                         exit(); 
                     }
 
@@ -27,9 +24,7 @@
         
                         if($row['CuentaUsuario'] == $usuarioLogin && password_verify($passwordLogin, $row['CuentaClave'])) {
 
-                            echo '<div class="alert alert-success alert-dismissible" role="alert">
-                                        Iniciando sesión...
-                                  </div>';
+                            echo "<script>new swal('¡Exito!', 'Iniciando sesión...', 'success');</script>";
 
                             session_start(['name' => 'Sistema']);
 
@@ -48,17 +43,11 @@
                             echo '<script> window.location = "http://localhost/sistema-asistencias/dashboard" </script>';
         
                         } else {
-                            echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                            ¡Error!     El usuario o contraseña son incorrectos.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                            echo "<script>new swal('¡Error!', 'El usuario o contraseña son incorrectos', 'error');</script>";
                         }
         
                     } else {
-                        echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                                ¡Error!     El usuario no existe.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                        echo "<script>new swal('¡Error!', 'El usuario no existe', 'error');</script>";
                     }
                     
             }

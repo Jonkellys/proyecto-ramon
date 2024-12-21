@@ -40,11 +40,8 @@
             $ultima->execute();
 
             if($sql->execute()){
-                echo '<div class="alert alert-success alert-dismissible" role="alert">
-                        Asistencia registrada correctamente.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
-                    echo '<script> window.location = "http://localhost/sistema-asistencias/asistencias"; </script>';
+                echo "<script>new swal('¡Exito!', 'Asistencia registrada correctamente', 'success');</script>";    
+                echo '<script> window.location = "http://localhost/sistema-asistencias/asistencias"; </script>';
             } else{
                 echo '<div class="alert alert-danger alert-dismissible" role="alert">
                         Hubo un error intente de nuevo.

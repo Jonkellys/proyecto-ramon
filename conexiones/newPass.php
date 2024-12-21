@@ -52,9 +52,7 @@
     $pdate = updatePass($password, $codigo);
 
     if($sql->execute()){
-        echo '<div class="alert alert-success" role="alert">
-                Contraseña actualizada correctamente.
-            </div>';
+        echo "<script>new swal('¡Exito!', 'Contraseña actualizada correctamente', 'success');</script>";
         echo '<script> window.location.href = "http://localhost/sistema-asistencias/login"; </script>';
     } else{
         echo '<div class="alert alert-danger alert-dismissible" role="alert">

@@ -14,7 +14,8 @@
       $sql = "DELETE FROM asistencias WHERE AsistenciaCodigo = '$codigo'";
 
       if($conn->query($sql)) {
-        echo '<script> window.location.href = "http://localhost/sistema-asistencias/asistencias"; </script>';
+      echo "<script>new swal('¡Exito!', 'Asistencia eliminada correctamente', 'success');</script>";    
+      echo '<script> window.location.href = "http://localhost/sistema-asistencias/asistencias"; </script>';
       } else {
         echo "<span class='badge badge-center rounded-pill bg-danger' data-bs-toggle='tooltip' data-bs-offset='0,4' data-bs-placement='right' data-bs-html='true' title='' data-bs-original-title='<span>No se pudo eliminar el usuario</span>'><span class='tf-icons bx bx-x'></span></span>";
       }

@@ -38,10 +38,7 @@
     }
 
     if($sql->execute()){
-        echo '<div class="alert alert-success alert-dismissible" role="alert">
-                Datos actualizados correctamente.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
+        echo "<script>new swal('¡Exito!', 'Datos actualizados correctamente', 'success');</script>";
         echo '<script> window.location.href = "http://localhost/sistema-asistencias/personal"; </script>';
     } else{
         echo '<div class="alert alert-danger alert-dismissible" role="alert">

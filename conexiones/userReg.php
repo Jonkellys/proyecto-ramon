@@ -29,44 +29,29 @@ require_once "./funciones.php";
             $genero = strClean($_POST["genero"]);
 
             if($usuario == "" || $email == "" || $clave == "" || $confirmar == "" || $nombre == "" || $apellido == "") {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        Debes llenar todos los campos.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'Debes llenar todos los campos', 'error');</script>";
                 exit(); 
             }
 
             if(strlen($clave) < 8){
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        La contraseña debe tener mínimo 8 carácteres.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'La contraseña debe tener mínimo 8 carácteres', 'error');</script>";
                 exit();
             }
             
             if($clave != $confirmar){
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        Las contraseñas no coinciden.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'Las contraseñas no coinciden', 'error');</script>";
                 exit();
             }  
 
             $consulta2 = ejecutar_consulta_simple("SELECT UserName FROM Usuarios WHERE UserName = '$usuario'");
                 if($consulta2->rowCount()>=1) {
-                    echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                            El usuario ingresado ya está registrado en el sistema.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>';
+                    echo "<script>new swal('¡Error!', 'El usuario ingresado ya está registrado en el sistema', 'error');</script>";
                     exit();
                 }
             
             $consulta3 = ejecutar_consulta_simple("SELECT UserEmail FROM Usuarios WHERE UserEmail = '$email'");
             if($consulta3->rowCount()>=1) {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        El correo ingresado ya está registrado en el sistema.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'El correo ingresado ya está registrado en el sistema', 'error');</script>";
                 exit();
             }
 
@@ -82,10 +67,7 @@ require_once "./funciones.php";
             $url = "http://localhost/sistema-asistencias/users";
 
             if($stmt->execute()){
-                echo '<div class="alert alert-success alert-dismissible" role="alert">
-                        Usuario registrado correctamente.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Exito!', 'Usuario registrado correctamente', 'success');</script>";
                 echo '<script> window.location.href = "' . $url . '"; </script>';
             } else{
                 echo '<div class="alert alert-danger alert-dismissible" role="alert">

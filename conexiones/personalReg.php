@@ -57,28 +57,19 @@
             }
 
             if($nombre == "" || $apellido == "" || $cedula == "" || $cargaF == "" || $titulo == "" || $nacionalidad == "" || $categoria == "" || $cargo == "" || $lugarNac == "" || $direccion == "" || $correo == "") {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        Debes llenar todos los campos.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'Debes llenar todos los campos', 'error');</script>";
                 exit(); 
             }
 
             $consulta = ejecutar_consulta_simple("SELECT PersonalCedula FROM personal WHERE PersonalCedula = '$cedula'");
             if($consulta->rowCount()>=1) {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        La cédula ingresada ya está registrada en el sistema.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'La cédula ingresada ya está registrada en el sistema', 'error');</script>";
                 exit();
             }
 
             $consulta1 = ejecutar_consulta_simple("SELECT PersonalCorreo FROM personal WHERE PersonalCorreo = '$correo'");
             if($consulta1->rowCount()>=1) {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                        El correo ingresado ya está registrado en el sistema.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Error!', 'El correo ingresado ya está registrado en el sistema', 'error');</script>";
                 exit();
             }
 
@@ -88,10 +79,7 @@
             $codigo = generar_codigo_aleatorio("P", 7, $numero);
 
             if($stmt->execute()){
-                echo '<div class="alert alert-success alert-dismissible" role="alert">
-                        Personal registrado correctamente.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
+                echo "<script>new swal('¡Exito!', 'Personal registrado correctamente', 'success');</script>";
                 echo '<script> window.location.href = "http://localhost/sistema-asistencias/personal"; </script>';
             } else{
                 echo '<div class="alert alert-danger alert-dismissible" role="alert">
