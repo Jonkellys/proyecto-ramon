@@ -210,6 +210,7 @@
               <div class="card mb-4">
                 <div class="card" style="padding: 0px 2%;">
                   <h5 class="card-header">Lista de Administradores</h5>
+                  <div id="msgBox"></div>
                   <div class="table-responsive text-nowrap" style="overflow: hidden;">
                     <table class="table table-hover" style="margin-bottom: 2%;" id="table">
                       <thead>
@@ -237,14 +238,18 @@
                                   <td> <strong>" . $num++ . "</strong></td>
                                   <td>" . $rows['AdminUsuario'] . "</td>
                                   <td>" . $rows['AdminEmail'] . "</td>
-                                  <td class='mt-0'>
-                                    <a class='btn btn-sm btn-info' href='editarAdmin?codigo=" . $rows['CuentaCodigo'] . "'>
+                                  <td class='mt-0 h-100 d-flex flex-row justify-content-center'>
+                                    <a class='btn btn-sm btn-info me-2' href='editarAdmin?codigo=" . $rows['CuentaCodigo'] . "'>
                                       <span class='tf-icons bx bx-edit'></span>
                                     </a>
                                     
-                                    <a class='btn btn-sm btn-danger' href= 'conexiones/eliminarAdmin.php?codigo=" . $rows['CuentaCodigo'] . "'>
-                                  <span class='tf-icons bx bx-trash'></span>
-                                </a>
+                                    <form action='" . SERVERURL . "conexiones/eliminarAdmin.php?codigo=" . $rows['CuentaCodigo'] . "&sesion=" . $_SESSION['codigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' data-form='delete' class='AdminDelForm'>
+                                    <div class='RespuestaAjax'></div>
+                                    <button class='btn btn-sm btn-danger'>
+                                      <span class='tf-icons bx bx-trash'></span>
+                                      </button>
+                            
+                        </form>
                                     
                                   </td>
                                 </tr>";
@@ -252,109 +257,10 @@
                         ?>
                       </tbody>
                     </table>
-                    <?php
-
-                $con = new mysqli($servername, $username, $password, $dbname);
-
-                $sql = "SELECT * FROM admins";
-                if($result = mysqli_query($con, $sql)) {
-                  $rowcount = mysqli_num_rows($result);
-                }
-                $codigo = $_GET['codigo'];
-
-              if (isset($codigo)) {
-
-              if($rowcount != 1) {
-                $sql = $conn->prepare("DELETE FROM admins WHERE CuentaCodigo = '$codigo'");
-
-                $sql1 = $conn->prepare("DELETE FROM cuentas WHERE CuentaCodigo = '$codigo'");
-
-
-                if ($sql->execute() && $sql1->execute()) {
-                  echo '<div class="alert alert-success" role="alert">
-                    Administrador eliminado correctamente.
-                </div>';
-                  echo '<script> window.location.href = "http://localhost/sistema-asistencias/administradores"; </script>';
-                  
-                } else {
-                  echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                    Huno un error, intente de nuevo.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>';
-                }
-              } else {
-                echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                No se puede eliminar el administrador principal.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-                echo '<script> window.location.href = "http://localhost/sistema-asistencias/administradores"; </script>';
-              }
-              
-              }
-              ?>
+                    
                   </div>
                 </div>
               </div>
-
-                <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content" id="data">
-                      <div class="modal-header">
-                        <h5 class="modal-title" >Datos de ""</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                      <form action="<?php echo SERVERURL; ?>conexiones/updateAdmin.php" enctype="multipart/form-data" method="POST" data-form="update" class="FormularioAjax">
-                      
-                      <div class="row">
-                              <div class="col mb-3">
-                                <label for="noombreadmin" class="form-label">Nombre:</label>
-                                <input type="text" name="nombre" class="form-control"/>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-3">
-                                <label for="apellidoadmin" class="form-label">Apellido:</label>
-                                <input type="text" name="apellido" class="form-control"/>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-3">
-                                <label for="cedulaadmin" class="form-label">Usuario</label>
-                                <input type="text" name="usuario" class="form-control"/>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-3">
-                                <label for="apellidoadmin" class="form-label">Correo:</label>
-                                <input type="email" name="correo" class="form-control"/>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-0">
-                                <label for="generoadmin" class="form-label">Género:</label>
-                                <input type="text" name="genero" class="form-control"/>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-3">
-                                <label for="apellidoadmin" class="form-label">Contraseña:</label>
-                                  <input type="password" name="clave" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="modal-footer">
-                              <input type="hidden" id="txt_userid" value="0">
-                              <div id="respuesta" style="margin-top: 3%;" class="RespuestaAjax"></div>
-                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="submit" id="btn-save" class="btn btn-primary">Actualizar</button>
-                            </div>
-                          </form>
-                          </div>
-                        </div>
-                  </div>
-                </div>
               
             </div>
         </div>
@@ -367,6 +273,7 @@
 
       <script src="<?php echo media; ?>assets/vendor/js/principal.js"></script>
       <script src="<?php echo media; ?>assets/datatables/config.js"></script>
+      <script src="<?php echo media; ?>js/eliminar.js"></script>
 
       <script>
       function letras(e) {

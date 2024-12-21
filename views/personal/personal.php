@@ -331,10 +331,6 @@
                                       <input type='hidden' id='deleteCodigo'  value=" . $rows['PersonalCodigo'] . ">
                                       <input type='hidden' id='tipo' value='personal'>
                                     </div>
-                                    
-
-
-                                    
 
                                   </td>
                                 </tr>";
@@ -347,15 +343,6 @@
                   </div>
                 </div>
               </div>  
-
-              <!-- // <a class='btn btn-sm btn-danger' href='conexiones/eliminarPersonal.php?codigo=" . $rows['PersonalCodigo'] . "'>
-                                    //   <span class='tf-icons bx bx-trash'></span>
-                                    // </a> -->
-
-              <!-- <form class='ml-2' action=' method='post'>
-                <input type='hidden' name='eliminar' value=" . $rows['PersonalCodigo'] . ">
-                <button class='btn btn-sm btn-danger' type='submit'><span class='tf-icons bx bx-trash'></span></button>
-              </form> -->
 
             </div>
           </div>

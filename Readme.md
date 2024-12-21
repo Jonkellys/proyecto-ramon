@@ -4,7 +4,7 @@
 
   - [x] Personal
   - [x] Asistencias
-  - [ ] Admins
+  - [x] Admins
   - [ ] Usuarios
   - [ ] Contraseñas
   - [ ] Registros
@@ -13,6 +13,6 @@
 
   - [x] SweetAlert color
 
-- **Agregar**
+<!-- - **Agregar**
   - [ ] Calcular horas totales
-  - [ ] Horarios
+  - [ ] Horarios -->
