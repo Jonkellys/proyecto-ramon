@@ -42,19 +42,6 @@
                  </div>';
             echo '<script> window.location.href = "http://localhost/sistema-asistencias/newPass?token=' . $token .'"; </script>';
             
-            // $to = $email ;
-            // $subject = "Recuperar contraseña" ;
-            // $msg = "Hola, haz click en este <a style='color: #fc3c51;' href=\'newPass?token=" . $token . "\'>link</a> para recuperar tu contraseña";
-            // $msg = wordwrap($msg , 160);
-            // $headers = "From: info@asistencias.com";
-            // mail($to, $subject, $msg, $headers);
-            
-
-            // echo '<div class="alert alert-success alert-dismissible" role="alert">
-            //         Hemos enviado un correo a <p style="color: #fc3c51;">' . $email . '</p>
-            //         Ingresa a tu correo y haz click en el link para recuperar tu contraseña.
-            //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            //     </div>';
         } else{
             echo '<div class="alert alert-danger alert-dismissible" role="alert">
                     Hubo un error intente de nuevo.

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.DeleteForm').submit(function (e) {
+  $('.UpdateForm').submit(function (e) {
     e.preventDefault()
 
     var form = $('form').get(0)
@@ -11,10 +11,11 @@ $(document).ready(function () {
     var respuesta = formu.children('.RespuestaAjax')
 
     var msjError = "<script>new swal('Ocurrió un error inesperado', 'Por favor actualice la página', 'error');</script>"
+    var msjsuccess = "<script>new swal('¡Exito!', 'Datos actualizados correctamente', 'success');</script>"
 
     new swal({
       title: '¿Estás seguro?',
-      text: 'Los datos se eliminarán del sistema',
+      text: 'Los datos se actualizarán del sistema',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Aceptar',
@@ -39,5 +40,9 @@ $(document).ready(function () {
       } else if (result.isDenied) {
       }
     })
+
+    setTimeout(() => {
+      location.reload()
+    }, 4000)
   })
 })

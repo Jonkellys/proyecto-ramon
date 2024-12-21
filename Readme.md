@@ -6,13 +6,13 @@
   - [x] Asistencias
   - [x] Admins
   - [x] Usuarios
-  - [ ] Contraseñas
+  - [x] Contraseñas
   - [ ] Registros
 
 - **Detalles**
 
   - [x] SweetAlert color
-  - [ ] Actualizar updates
+  - [x] Actualizar updates
 
 <!-- - **Agregar**
   - [ ] Calcular horas totales

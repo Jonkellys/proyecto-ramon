@@ -244,12 +244,11 @@
                                     </a>
                                     
                                     <form action='" . SERVERURL . "conexiones/eliminarAdmin.php?codigo=" . $rows['CuentaCodigo'] . "&sesion=" . $_SESSION['codigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' class='DeleteForm'>
-                                    <div class='RespuestaAjax'></div>
-                                    <button class='btn btn-sm btn-danger'>
-                                      <span class='tf-icons bx bx-trash'></span>
-                                      </button>
-                            
-                        </form>
+                                      <div class='RespuestaAjax'></div>
+                                      <button class='btn btn-sm btn-danger'>
+                                        <span class='tf-icons bx bx-trash'></span>
+                                        </button>
+                                    </form>
                                     
                                   </td>
                                 </tr>";

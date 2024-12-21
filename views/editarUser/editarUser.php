@@ -141,9 +141,6 @@
                         <div class="d-grid gap-2 col-lg-8 mx-auto">
                       
                         <a href="users" class="btn btn-outline-secondary">Volver</a>
-                        <div class="alert alert-primary role="alert">
-                                <b>Nota: </b>Actualice la página luego de actualizar.
-                            </div>
                       </div>
                       </div>
 
@@ -186,7 +183,7 @@
 
                   <div class="tab-pane fade" id="editarDatosPerfil" role="tabpanel">
                     <h4>Editar Datos</h4>
-                    <form action="<?php echo SERVERURL; ?>conexiones/updateUser.php" enctype="multipart/form-data" method="POST" data-form="update" class="FormularioAjax">
+                    <form action="<?php echo SERVERURL; ?>conexiones/updateUser.php" enctype="multipart/form-data" method="POST" data-form="update" class="UpdateForm">
                       <div class="row">
                         <div class="col mb-3">
                           <label for="nombreper" class="form-label">Nombre:</label>
@@ -213,14 +210,31 @@
                             <div class="row">
                               <div class="col mb-3">
                                 <label for="generoper" class="form-label">Género:</label>
-                                <div class="form-check mt-0">
-                                  <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd" checked="">
-                                  <label class="form-check-label" for="femenino"> Femenino </label>
-                                </div>
-                                <div class="form-check">
-                                  <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd">
-                                  <label class="form-check-label" for="masculino"> Masculino </label>
-                                </div>
+                                <?php
+                                  if ($data1->CuentaGenero == "Femenino") {
+                                    echo '
+                                      <div class="form-check mt-0">
+                                        <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd" checked="">
+                                        <label class="form-check-label" for="femenino"> Femenino </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd">
+                                        <label class="form-check-label" for="masculino"> Masculino </label>
+                                      </div>
+                                    ';
+                                  } else {
+                                    echo '
+                                      <div class="form-check mt-0">
+                                        <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd">
+                                        <label class="form-check-label" for="femenino"> Femenino </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd" checked="">
+                                        <label class="form-check-label" for="masculino"> Masculino </label>
+                                      </div>
+                                    ';
+                                  }
+                                ?>
                               </div>
                             </div>                  
                             <input type="hidden" name="codigo" value="<?php echo $data->CuentaCodigo; ?>">
@@ -255,6 +269,7 @@
 
       <script src="<?php echo media; ?>assets/vendor/js/principal.js"></script>
       <script src="<?php echo media; ?>assets/datatables/config.js"></script>
+      <script src="<?php echo media; ?>js/editar.js"></script>
 
   </body>
 </html>

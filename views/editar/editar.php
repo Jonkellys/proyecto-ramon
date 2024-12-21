@@ -267,14 +267,31 @@
                       <div class="row">
                         <div class="col mb-3">
                           <label for="generoper" class="form-label">Género:</label>
-                          <div class="form-check mt-0">
-                            <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd" checked="">
-                            <label class="form-check-label" for="femenino"> Femenino </label>
-                          </div>
-                          <div class="form-check">
-                            <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd">
-                            <label class="form-check-label" for="masculino"> Masculino </label>
-                          </div>
+                          <?php
+                                  if ($data1->CuentaGenero == "Femenino") {
+                                    echo '
+                                      <div class="form-check mt-0">
+                                        <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd" checked="">
+                                        <label class="form-check-label" for="femenino"> Femenino </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd">
+                                        <label class="form-check-label" for="masculino"> Masculino </label>
+                                      </div>
+                                    ';
+                                  } else {
+                                    echo '
+                                      <div class="form-check mt-0">
+                                        <input name="genero" class="form-check-input" type="radio" value="Femenino" id="femeninoPerAdd">
+                                        <label class="form-check-label" for="femenino"> Femenino </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input name="genero" class="form-check-input" type="radio"  value="Masculino" id="masculinoPerAdd" checked="">
+                                        <label class="form-check-label" for="masculino"> Masculino </label>
+                                      </div>
+                                    ';
+                                  }
+                                ?>
                         </div>
                       </div>
 

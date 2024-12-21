@@ -326,11 +326,12 @@
                                       <span class='tf-icons bx bx-edit'></span>
                                     </a>
 
-                                    <div class='btn btn-sm btn-danger' id='deletePerBtn'>
-                                      <span class='tf-icons bx bx-trash'></span>
-                                      <input type='hidden' id='deleteCodigo'  value=" . $rows['PersonalCodigo'] . ">
-                                      <input type='hidden' id='tipo' value='personal'>
-                                    </div>
+                                    <form action='" . SERVERURL . "conexiones/eliminarPersonal.php?codigo=" . $rows['PersonalCodigo'] . "' autocomplete='off' enctype='multipart/form-data' method='POST' class='DeleteForm'>
+                                      <div class='RespuestaAjax'></div>
+                                      <button class='btn btn-sm btn-danger'>
+                                        <span class='tf-icons bx bx-trash'></span>
+                                        </button>
+                                    </form>
 
                                   </td>
                                 </tr>";
