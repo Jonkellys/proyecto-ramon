@@ -20,6 +20,8 @@
         session_destroy();
         header('Location: http://localhost/sistema-asistencias/login');
       }
+
+      $page = "dashboard";
     ?>
 <!DOCTYPE html>
 

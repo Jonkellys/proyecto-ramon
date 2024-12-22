@@ -1,5 +1,6 @@
 <li class="text-divider"></li>
-<li class="menu-item">
+<!-- <li class="menu-header w-auto mx-auto mt-0"></li> -->
+<li class="menu-item w-auto">
     <button id="showToastPlacement" class="menu-link btn" style="border: none; background: none;" data-bs-toggle="offcanvas" data-bs-target="#confirm" aria-controls="offcanvasTop">
       <i class="menu-icon tf-icons bx bx-log-out"></i>
         <div data-i18n="Usuarios">Cerrar Sesión</div>
