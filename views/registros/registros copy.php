@@ -126,47 +126,40 @@
                 </div>
               </div>
 
-              <div class="card align-center col-lg-11 my-4">
+              <div class="card align-center col-lg-11 mt-4">
                 <div class="card-body">
                   <h5 class="card-title">Crea un registro</h5>
-                  <form action="<?php echo SERVERURL; ?>conexiones/registros.php" enctype="multipart/form-data" method="POST">
-                    
-                    <div class="ms-2 mb-2">
-                      <h6>Elija un tema y las opciones para generar el informe</h6>
-
-                      <div class="mb-3 mt-4 themeChoose">
-                        <select class="form-select" id="themeChoose">
-                          <option disabled selected="selected">Elija un tema</option>
-                          <option value="Personal">Personal</option>
-                          <option value="Asistencias">Asistencias</option>
-                        </select>
-                      </div>
-
-                      <div class="my-3 mx-auto d-flex justify-content-start">
-                        <div class="input-group w-auto mx-1">
-                          <span class="input-group-text">Tipo de Archivo</span>
-                        </div>
-                        <div class="input-group mx-1 w-25">
-                          <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="radio" value="pdf" name="fileRadio">
-                          </div>
-                          <input type="text" class="form-control" readonly value="PDF" >
-                        </div>
-                        <div class="input-group mx-1 w-25">
-                          <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="radio" value="excel" name="fileRadio">
-                          </div>
-                          <input type="text" class="form-control" readonly value="Excel" >
-                        </div>
-                      </div>
+                  <form action="<?php echo SERVERURL; ?>conexiones/reporteMes.php" enctype="multipart/form-data" method="POST">
+                    <div class="mt-2">
+                      <label class="form-label" for="basic-default-fullname">Desde:</label>
+                      <input class="form-control" required name="inicio" type="date" id="desde">
                     </div>
-                    
-                    <div class="w-100 d-flex justify-content-around flex-wrap mx-auto" id="formBox">
+                    <div class="mt-2">
+                      <label class="form-label" for="basic-default-company">Hasta:</label>
+                      <input class="form-control" required name="fin" type="date" id="hasta">
                     </div>
-                      
+                    <div class="mt-2">
+                      <label class="form-label" for="basic-default-company">Personal:</label>
+                      <select class="form-select" required name="persona" >
+                        <option selected="" value="Todos">Todo el Personal</option>
+                          <?php
+                            $servername = "localhost";
+                            $dbname = "sistema-asistencias";
+                            $username = "root";
+                            $password = "";
 
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $sql = "SELECT * FROM personal";
+                            $result = $conn->query($sql);
+                                  
+                            while ($rows = $result->fetch()) {
+                              echo'<option value="' . $rows['PersonalCodigo'] . '">' . $rows['PersonalNombre'] . '  ' . $rows['PersonalApellido'] . '</option>';
+                            };  
+                          ?>
+                      </select>
+                    </div>
                     <div class="card-footer d-grid gap-6 col-lg-4 mx-auto">
-                      <button class="btn btn-md btn-primary" type="submit"><i class='bx bx-download me-2'></i> Crear Registro</button>
+                      <button class="btn btn-md rounded-pill btn-danger" type="submit"><i class='bx bxs-file-pdf'></i> Generar PDF</button>
                     </div>  
                   </form>
                 </div>
@@ -181,32 +174,5 @@
     </div>
             
           <?php include "./modulos/scripts.php"; ?>
-      <script>
-        $(document).ready(function() {
-          $('#themeChoose').change(function(e) {
-            e.preventDefault();
-
-            let valor = document.getElementById('themeChoose').value;
-            let respuesta = document.getElementById('formBox');
-
-            $.ajax({
-              url: "http://localhost/sistema-asistencias/conexiones/reportes.php?tipo=" + valor,
-              type: 'GET',
-              data: $(this).val(),
-              dataType: 'html',
-              processData: false,
-              contentType: false,
-              success: function(data) {
-                respuesta.innerHTML = data;
-                // console.log(valor);
-              },
-              error: function(error) {
-                respuesta.html("Error: " + error);
-                // console.log("Error: " + error);
-              }
-            });
-          });
-        });
-      </script>
    </body>
 </html>

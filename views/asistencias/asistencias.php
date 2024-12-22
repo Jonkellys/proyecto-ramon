@@ -179,7 +179,7 @@
                       
               <div class="card mb-4 mt-3">
                 <div class="card" style="padding: 0px 2%;">
-                  <h5 class="card-header">Lista de Personal</h5>
+                  <h5 class="card-header">Lista de Asistencias</h5>
                   <div class="table-responsive text-nowrap" style="overflow: hidden;">
                     <table class="table table-hover" style="margin-bottom: 2%;" id="asist">
                       <thead>
