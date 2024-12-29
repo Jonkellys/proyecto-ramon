@@ -11,7 +11,7 @@ $(document).ready(function () {
     var respuesta = formu.children('.RespuestaAjax')
 
     var msjError = "<script>new swal('Ocurrió un error inesperado', 'Por favor actualice la página', 'error');</script>"
-    var msjsuccess = "<script>new swal('¡Exito!', 'Datos actualizados correctamente', 'success');</script>"
+    var msjsuccess = "<script>new swal('¡Éxito!', 'Datos actualizados correctamente', 'success');</script>"
 
     new swal({
       title: '¿Estás seguro?',

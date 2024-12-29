@@ -1,64 +1,62 @@
 <?php
-    require_once "./funciones.php";
-    
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once "./funciones.php";
 
-    $token = strClean($_POST['token']);
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $pass = strClean($_POST['pass']);
-    $newpass = strClean($_POST['newpass']);
-    $password = password_hash($pass, PASSWORD_DEFAULT);
+$token = strClean($_POST['token']);
 
-    if($pass == "" || $newpass == "") {
-        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+$pass = strClean($_POST['pass']);
+$newpass = strClean($_POST['newpass']);
+$password = password_hash($pass, PASSWORD_DEFAULT);
+
+if ($pass == "" || $newpass == "") {
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">
                 Debes llenar todos los campos.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-        exit(); 
-    }
+    exit();
+}
 
-    if(strlen($pass) < 8){
-        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+if (strlen($pass) < 8) {
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">
                 La contraseña debe tener mínimo 8 carácteres.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-        exit();
-    }
-    
-    if($pass != $newpass){
-        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+    exit();
+}
+
+if ($pass != $newpass) {
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">
                 Las contraseñas no coinciden.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-        exit();
-    }  
+    exit();
+}
 
-    $stmt = "SELECT * FROM contrasenas WHERE contrasenaToken = '$token' LIMIT 1";
-    $result = $conn->query($stmt);
+$stmt = "SELECT * FROM contrasenas WHERE contrasenaToken = '$token' LIMIT 1";
+$result = $conn->query($stmt);
 
-    while ($rows = $result->fetch()) {
-        $email = $rows['contrasenaEmail'];
-        $tipo = $rows['CuentaTipo'];
-        $codigo = $rows['CuentaCodigo'];
-    }; 
+while ($rows = $result->fetch()) {
+    $email = $rows['contrasenaEmail'];
+    $tipo = $rows['CuentaTipo'];
+    $codigo = $rows['CuentaCodigo'];
+};
 
-    if($tipo == "Administrador") {
-        $sql = $conn->prepare("UPDATE admins SET AdminClave = '$password' WHERE CuentaCodigo = '$codigo'");
-    } else {
-        $sql = $conn->prepare("UPDATE Usuarios SET UserClave = '$password'  WHERE CuentaCodigo = '$codigo'");
-    }
+if ($tipo == "Administrador") {
+    $sql = $conn->prepare("UPDATE admins SET AdminClave = '$password' WHERE CuentaCodigo = '$codigo'");
+} else {
+    $sql = $conn->prepare("UPDATE Usuarios SET UserClave = '$password'  WHERE CuentaCodigo = '$codigo'");
+}
 
-    $pdate = updatePass($password, $codigo);
+$pdate = updatePass($password, $codigo);
 
-    if($sql->execute()){
-        echo "<script>new swal('¡Exito!', 'Contraseña actualizada correctamente', 'success');</script>";
-        echo '<script> window.location.href = "http://localhost/sistema-asistencias/login"; </script>';
-    } else{
-        echo '<div class="alert alert-danger alert-dismissible" role="alert">
+if ($sql->execute()) {
+    echo "<script>new swal('¡Éxito!', 'Contraseña actualizada correctamente', 'success');</script>";
+    echo '<script> window.location.href = "http://localhost/sistema-asistencias/login"; </script>';
+} else {
+    echo '<div class="alert alert-danger alert-dismissible" role="alert">
                 Hubo un error intente de nuevo.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-    }
-
-?>
+}
