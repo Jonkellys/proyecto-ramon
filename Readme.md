@@ -7,7 +7,7 @@
   - [x] Admins
   - [x] Usuarios
   - [x] Contraseñas
-  - [ ] Registros
+  - [x] Registros
 
 - **Detalles**
 
