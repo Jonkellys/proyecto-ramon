@@ -70,7 +70,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:F1')->getFont()->setBold(true);
 $spreadsheet->setActiveSheetIndex(0);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Registro de Asistencias - ' . gmdate('d/m/Y h:i:s') . '.xlsx"');
+header('Content-Disposition: attachment;filename="Registro de Asistencias - ' . gmdate('d/m/Y') . '.xlsx"');
 header('Cache-Control: max-age=0');
 header('Cache-Control: max-age=1');
 

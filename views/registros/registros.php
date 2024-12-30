@@ -90,7 +90,7 @@ $page = "registros";
                       </select>
                     </div>
 
-                    <div class="my-3 mx-auto d-flex justify-content-start">
+                    <!-- <div class="my-3 mx-auto d-flex justify-content-start">
                       <div class="input-group w-auto mx-1">
                         <span class="input-group-text">Tipo de Archivo</span>
                       </div>
@@ -106,7 +106,7 @@ $page = "registros";
                         </div>
                         <input type="text" class="form-control" readonly value="Excel">
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div style="margin-top: 3%;" class="RespuestaAjax"></div>
 
@@ -118,7 +118,7 @@ $page = "registros";
 
 
                   <div class="card-footer d-grid gap-6 col-lg-4 mx-auto">
-                    <button class="btn btn-md btn-primary" type="submit"><i class='bx bx-download me-2'></i> Crear Registro</button>
+                    <button class="btn btn-md btn-success" type="submit"><i class='bx bx-download me-2'></i> Generar Excel</button>
                   </div>
                 </form>
               </div>

@@ -18,9 +18,6 @@ $categoria = strClean($_GET['categoria']);
 $genero = strClean($_GET['genero']);
 $estado = strClean($_GET['estado']);
 
-$desde = strClean($_GET['desde']);
-$hasta = strClean($_GET['hasta']);
-
 if ($personal == "Todos") {
   $personalQuery = "";
 } else if ($personal != "Todos" && $personal != "Ninguno") {
@@ -78,7 +75,7 @@ $spreadsheet->setActiveSheetIndex(0)
   ->setCellValue('G1', 'Teléfono')
   ->setCellValue('H1', 'Correo Electrónico')
   ->setCellValue('I1', 'Nacionalidad')
-  ->setCellValue('J1', 'Titulo Académico')
+  ->setCellValue('J1', 'Título Académico')
   ->setCellValue('K1', 'Categoría')
   ->setCellValue('L1', 'Cargo')
   ->setCellValue('M1', 'Carga Familiar')
@@ -123,7 +120,7 @@ $spreadsheet->getActiveSheet()->getStyle('A1:P1')->getFont()->setBold(true);
 $spreadsheet->setActiveSheetIndex(0);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Registro de Personal - ' . gmdate('d/m/Y h:i:s') . '.xlsx"');
+header('Content-Disposition: attachment;filename="Registro del Personal - ' . gmdate('d/m/Y') . '.xlsx"');
 header('Cache-Control: max-age=0');
 header('Cache-Control: max-age=1');
 
