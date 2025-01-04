@@ -1,21 +1,21 @@
-<?php 
-  session_start(['name' => 'Sistema']);
+<?php
+session_start(['name' => 'Sistema']);
 
-  if(!isset($_SESSION['token']) || !isset($_SESSION['usuario'])) {
-    unset($_SESSION['id']);
-    unset($_SESSION['nombre']);
-    unset($_SESSION['apellido']);
-    unset($_SESSION['usuario']);
-    unset($_SESSION['email']);
-    unset($_SESSION['clave']);
-    unset($_SESSION['tipo']);
-    unset($_SESSION['genero']);
-          
-    session_destroy();
-    header('Location: http://localhost/sistema-asistencias/login');
-  }
-  
-  $page = "personal";
+if (!isset($_SESSION['token']) || !isset($_SESSION['usuario'])) {
+  unset($_SESSION['id']);
+  unset($_SESSION['nombre']);
+  unset($_SESSION['apellido']);
+  unset($_SESSION['usuario']);
+  unset($_SESSION['email']);
+  unset($_SESSION['clave']);
+  unset($_SESSION['tipo']);
+  unset($_SESSION['genero']);
+
+  session_destroy();
+  header('Location: http://localhost/sistema-asistencias/login');
+}
+
+$page = "personal";
 ?>
 
 <!DOCTYPE html>
@@ -26,55 +26,53 @@
   dir="ltr"
   data-theme="theme-default"
   data-assets-path="../assets/"
-  data-template="vertical-menu-template-free"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta
+  data-template="vertical-menu-template-free">
 
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta
 
-    <title>Personal | <?php echo NOMBRE;?></title>
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <meta name="description" content="" />
+  <title>Personal | <?php echo NOMBRE; ?></title>
 
-    <?php include "./modulos/links.php"; ?>
+  <meta name="description" content="" />
 
-  </head>
+  <?php include "./modulos/links.php"; ?>
 
-  <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
-        <!-- Menu -->
-        <?php include "./modulos/menu.php"; ?>
+</head>
 
-        <!-- / Menu -->
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Menu -->
+      <?php include "./modulos/menu.php"; ?>
 
-        <!-- Layout container -->
-        <div class="layout-page">
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-fluid flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Información / </span> Personal</h4>
-              
-              <div class="demo-inline-spacing">
-                <?php
-                  if($_SESSION['tipo'] == "Administrador") {
-                    echo'<button type="button" style="margin: 0% 1% 1% 1%;" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#PerAdd" aria-expanded="false" aria-controls="collapseAdminAdd">
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container-fluid flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Información / </span> Personal</h4>
+
+            <div class="demo-inline-spacing">
+              <?php
+              if ($_SESSION['tipo'] == "Administrador") {
+                echo '<button type="button" style="margin: 0% 1% 1% 1%;" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#PerAdd" aria-expanded="false" aria-controls="collapseAdminAdd">
                       <span class="tf-icons bx bx-user-plus"></span>   Añadir Personal
                     </button>';
-                  }
-                ?>
-                <a class="btn btn-md btn-info" href="conexiones/PersonalList.php" target="_blank"><i class='bx bxs-file-pdf'></i>   Generar reporte del Personal</a>
-              </div>
+              }
+              ?>
+            </div>
 
-              <?php
-              if($_SESSION['tipo'] == "Administrador") {
-                echo'
+            <?php
+            if ($_SESSION['tipo'] == "Administrador") {
+              echo '
                 <div class="card mt-4">
                   <div class="collapse" id="PerAdd">
                     <div class="card ">
@@ -226,52 +224,52 @@
                     </div>
                   </div>
                 </div>';
-              }
-              ?>
+            }
+            ?>
 
-              <div class="card mt-4">
-                <div class="card" style="padding: 0px 2%;">
-                  <h5 class="card-header">Lista de Personal</h5>
-                  <div class="table-responsive text-nowrap" style="overflow: hidden;">
+            <div class="card mt-4">
+              <div class="card" style="padding: 0px 2%;">
+                <h5 class="card-header">Lista de Personal</h5>
+                <div class="table-responsive text-nowrap" style="overflow: hidden;">
                   <div id="delete"></div>
-                    <table class="table table-hover" style="margin-bottom: 2%;" id="table">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
-                          <th>Cédula</th>
-                          <th>Cargo</th>
-                          <th>Estado</th>
-                          <?php
-                            if($_SESSION['tipo'] == "Administrador") {
-                              echo'<th>Acciones</th>';
-                            }
-                          ?>
-                        </tr>
-                      </thead>
-                      <tbody class="table-border-bottom-0">
+                  <table class="table table-hover" style="margin-bottom: 2%;" id="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cédula</th>
+                        <th>Cargo</th>
+                        <th>Estado</th>
                         <?php
-                          $servername = "localhost";
-                          $dbname = "sistema-asistencias";
-                          $username = "root";
-                          $password = "";
-                          $num = 1;
+                        if ($_SESSION['tipo'] == "Administrador") {
+                          echo '<th>Acciones</th>';
+                        }
+                        ?>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <?php
+                      $servername = "localhost";
+                      $dbname = "sistema-asistencias";
+                      $username = "root";
+                      $password = "";
+                      $num = 1;
 
-                          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                          $sql = "SELECT * FROM personal";
-                          $result = $conn->query($sql);
+                      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                      $sql = "SELECT * FROM personal";
+                      $result = $conn->query($sql);
 
-                          while ($rows = $result->fetch()) {
-                            echo"<tr>
+                      while ($rows = $result->fetch()) {
+                        echo "<tr>
                                   <td> <strong>" . $num++ . "</strong></td>
-                                  <td>" . $rows['PersonalNombre'] . "</td>
+                                  <td><a href='empleado?codigo=" . $rows['PersonalCodigo'] . "'>" . $rows['PersonalNombre'] . "</a></td>
                                   <td>" . $rows['PersonalApellido'] . "</td>
                                   <td>" . $rows['PersonalCedula'] . "</td>
                                   <td>" . $rows['PersonalCargo'] . "</td>
                                   <td>" . $rows['PersonalEstado'] . "</td>";
-                            if($_SESSION['tipo'] == "Administrador") {
-                              echo"<td class='mt-0 h-100 d-flex flex-row justify-content-around'>
+                        if ($_SESSION['tipo'] == "Administrador") {
+                          echo "<td class='mt-0 h-100 d-flex flex-row justify-content-around'>
                                     <a class='btn btn-sm btn-info' href='editar?codigo=" . $rows['PersonalCodigo'] . "'>
                                       <span class='tf-icons bx bx-edit'></span>
                                     </a>
@@ -285,72 +283,72 @@
 
                                   </td>
                                 </tr>";
-                            }
-                          };  
-                        ?>
-                      </tbody>
-                      
-                    </table>
-                  </div>
-                </div>
-              </div>  
+                        }
+                      };
+                      ?>
+                    </tbody>
 
+                  </table>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
-
-      
     </div>
 
-    <?php include "./modulos/scripts.php"; ?>
-    <script src="<?php echo media; ?>assets/vendor/js/principal.js"></script>
-    <script src="<?php echo media; ?>assets/datatables/config.js"></script>
-    <script src="<?php echo media; ?>js/eliminar.js"></script>
-    <script>
-      $("#cedula").on({
-        "focus": function (event) {
-            $(event.target).select();
-        },
-        "keyup": function (event) {
-          $(event.target).val(function (index, value ) {
-                return value.replace(/\D/g, "")
-                .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-              });
-            }
-      });
 
-      function letras(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
+  </div>
 
-        if (tecla == 8) {
-          return true;
-        }
+  <?php include "./modulos/scripts.php"; ?>
+  <script src="<?php echo media; ?>assets/vendor/js/principal.js"></script>
+  <script src="<?php echo media; ?>assets/datatables/config.js"></script>
+  <script src="<?php echo media; ?>js/eliminar.js"></script>
+  <script>
+    $("#cedula").on({
+      "focus": function(event) {
+        $(event.target).select();
+      },
+      "keyup": function(event) {
+        $(event.target).val(function(index, value) {
+          return value.replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+        });
+      }
+    });
 
-        if (tecla == 32) {
-          return true;
-        }
+    function letras(e) {
+      tecla = (document.all) ? e.keyCode : e.which;
 
-        patron = /[A-Za-z]/;
-        tecla_final = String.fromCharCode(tecla);
-        return patron.test(tecla_final);
+      if (tecla == 8) {
+        return true;
       }
 
-      function numeros(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8){
-          return true;
-        }
-
-        if (tecla == 32) {
-          return true;
-        }
-
-        patron =/[0-9]/;
-        tecla_final = String.fromCharCode(tecla);
-        return patron.test(tecla_final);
+      if (tecla == 32) {
+        return true;
       }
-    </script>
-    
-  </body>
+
+      patron = /[A-Za-z]/;
+      tecla_final = String.fromCharCode(tecla);
+      return patron.test(tecla_final);
+    }
+
+    function numeros(e) {
+      tecla = (document.all) ? e.keyCode : e.which;
+      if (tecla == 8) {
+        return true;
+      }
+
+      if (tecla == 32) {
+        return true;
+      }
+
+      patron = /[0-9]/;
+      tecla_final = String.fromCharCode(tecla);
+      return patron.test(tecla_final);
+    }
+  </script>
+</body>
+
 </html>
