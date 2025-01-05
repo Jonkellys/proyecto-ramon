@@ -9,7 +9,7 @@
       <!-- endbuild -->
 
       <!-- Vendors JS -->
-      <script src="<?php echo media; ?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
+      <!-- <script src="<?php echo media; ?>assets/vendor/libs/apex-charts/apexcharts.js"></script> -->
 
       <!-- Main JS -->
       <script src="<?php echo media; ?>assets/js/main.js"></script>

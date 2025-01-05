@@ -13,7 +13,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= media; ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="<?= media; ?>assets/vendor/libs/apex-charts/apex-charts.css" />
+    <!-- <link rel="stylesheet" href="<?= media; ?>assets/vendor/libs/apex-charts/apex-charts.css" /> -->
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="<?= media; ?>assets/vendor/css/pages/page-auth.css" />
