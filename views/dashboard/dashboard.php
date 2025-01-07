@@ -37,7 +37,6 @@
       <meta name="description" content="" />
 
       <?php include "./modulos/links.php"; ?>
-      <link rel="stylesheet" href="<?= media; ?>assets/vendor/libs/apex-charts/apex-charts.css" />
 
     </head>
 
@@ -138,8 +137,11 @@
                       </div>
                     </div>
 
-                    <div class="card col-7 h-auto my-5 p-3">
-                      Semana
+                    <div class="card col-10 h-50 my-5 p-4 d-flex flex-row flex-wrap justify-content-center">
+                      <h5 class="card-title fw-semibold w-100">Asistencias de esta semana</h5>
+                      <div>
+                      	<canvas style="max-height: 25rem !important; width: 35rem !important;" id="weekDaysChart"></canvas>
+                      </div>
                     </div>
 
                   </div>
@@ -161,7 +163,45 @@
 
 
       <?php include "./modulos/scripts.php"; ?>
-      <script src="<?php echo media; ?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
+      <script type="module" src="<?php echo media; ?>assets/vendor/libs/chartjs/chart.umd.min.js"></script>
+      <script type="module">
+        const asisData = <?php echo weekDaysAttendance(); ?>;
+
+        const data = {
+          labels: [
+            'Lunes',
+            'Martes',
+            'Miércoles',
+            'Jueves',
+            'Viernes'
+          ],
+          datasets: [{
+            label: 'Asistencias',
+            data: asisData,
+            borderWidth: 1,
+            barThickness: 15,
+            borderRadius: 5
+          }]
+        };
+        const config = {
+          "maintainAspectRatio": false,
+          type: 'bar',
+          data: data,
+          options: {
+            indexAxis: 'y',
+    				scales: {
+      				y: {
+        				beginAtZero: true
+      				}
+    				}
+  				},
+        };
+
+        const barChart = new Chart(
+          document.getElementById('weekDaysChart').getContext("2d"),
+          config
+        );
+      </script>
     </body>
 
     </html>
