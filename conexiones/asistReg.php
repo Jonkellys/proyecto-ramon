@@ -20,6 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql->bindParam(":cedula", $cedula);
 
         $personal = strClean($_POST['personal']);
+
+        if ($personal == "") {
+            echo "<script>new swal('¡Error!', 'Debes seleccionar un personal', 'error');</script>";
+            exit();
+        }
+
         $salida = date("0000-00-00 00:00:00");
 
         $consulta = ejecutar_consulta_simple("SELECT id FROM asistencias");
