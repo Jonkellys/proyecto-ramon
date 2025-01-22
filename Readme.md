@@ -14,6 +14,6 @@
   - [x] SweetAlert color
   - [x] Actualizar updates
 
-<!-- - **Agregar**
-  - [ ] Calcular horas totales
-  - [ ] Horarios -->
+- **Agregar**
+  - [x] Excel
+  - [x] Buscar personal
